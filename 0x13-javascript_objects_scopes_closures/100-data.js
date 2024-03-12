@@ -1,2 +1,5 @@
 #!/usr/bin/node
-exports.list = [1, 2, 3, 4, 5];
+const list = require('./100-data').list;
+const map1 = list.map((x, i) => i * x);
+console.log(list);
+console.log(map1);
