@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """
- adds the State object "Louisiana" to the database hbtn_0e_6_usa
+Adds the State object "Louisiana" to the database hbtn_0e_6_usa.
+Usage: ./11-model_state_insert.py <mysql username> /
+                                  <mysql password> /
+                                  <database name>
 """
-
 import sys
-from unicodedata import name
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from model_state import State
@@ -13,10 +14,10 @@ if __name__ == "__main__":
     engine = create_engine("mysql+mysqldb://{}:{}@localhost/{}"
                            .format(sys.argv[1], sys.argv[2], sys.argv[3]),
                            pool_pre_ping=True)
-    session_maker = sessionmaker(bind=engine)
-    session = session_maker()
+    Session = sessionmaker(bind=engine)
+    session = Session()
 
-    obj = State(name="Louisiana")
-    session.add(obj)
+    louisiana = State(name="Louisiana")
+    session.add(louisiana)
     session.commit()
-    print(obj.id)
+    print(louisiana.id)
