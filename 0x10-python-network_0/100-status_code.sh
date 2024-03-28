@@ -1,3 +1,3 @@
 #!/bin/bash
-# sends a request to a URL, and displays only the status code of the response.
-curl -s -o /dev/null -w "%{http_code}" "$1"
+# Send request to URL .
+awk 'NR==1{printf "%s", $2}' headers "$(curl -sI "$1" -o headers)"
