@@ -1,6 +1,2 @@
 #!/usr/bin/node
-const message = `C is fun
-Python is cool
-JavaScript is amazing`;
-
-console.log(message);
+console.log('C is fun\nPython is cool\nJavaScript is amazing');
