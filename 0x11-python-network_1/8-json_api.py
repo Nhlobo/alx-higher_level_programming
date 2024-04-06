@@ -1,31 +1,32 @@
 #!/usr/bin/python3
-"""
-Module to send a POST request to http://0.0.0.0:5000/search_user with a letter as a parameter.
-"""
+"""Using sys and requests module to send a post request"""
 
-import requests
 import sys
+import requests
+
 
 if __name__ == "__main__":
-    """
-    Takes in a letter, sends a POST request to http://0.0.0.0:5000/search_user with the letter as a parameter, and displays the response.
-    If the response body is properly JSON formatted and not empty, displays the id and name.
-    Otherwise, displays "Not a valid JSON" if the JSON is invalid, and "No result" if the JSON is empty.
-    """
-    if len(sys.argv) == 1:
-        q = ""
-    else:
-        q = sys.argv[1]
+    # get the URL from the command line
+    letter = "" if len(sys.argv) == 1 else sys.argv[1]
 
-    url = 'http://0.0.0.0:5000/search_user'
-    payload = {'q': q}
-    response = requests.post(url, data=payload)
+    # URL to send a POST request to
+    url = "http://0.0.0.0:5000/search_user"
+
+    # Letter must be sent in variable q
+    data = {'q': letter}
+
+    # send the POST request
+    response = requests.post(url, data=data)
 
     try:
-        data = response.json()
-        if data:
-            print("[{}] {}".format(data.get('id'), data.get('name')))
-        else:
+        # parse the response as JSON
+        parsed_response = response.json()
+
+        # check the format of JSON format
+        if parsed_response == {}:
             print("No result")
+        else:
+            print("[{}] {}".format(parsed_response.get(
+                "id"), parsed_response.get("name")))
     except ValueError:
         print("Not a valid JSON")
