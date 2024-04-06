@@ -1,19 +1,19 @@
 #!/usr/bin/python3
-"""
-Module to fetch the body of a response from a URL and handle HTTP errors using the requests package.
-"""
+"""using requests module to fetch"""
 
-import requests
 import sys
+import requests
+
 
 if __name__ == "__main__":
-    """
-    Takes in a URL, sends a request to the URL, and displays the body of the response.
-    If the HTTP status code is greater than or equal to 400, prints "Error code:" followed by the value of the HTTP status code.
-    """
+    # get the URL from the command line
     url = sys.argv[1]
+
+    # Send a GET request to the specified URL
     response = requests.get(url)
+
+    # Check if HTTP status code error
     if response.status_code >= 400:
-        print("Error code:", response.status_code)
+        print("Error code: {}".format(response.status_code))
     else:
         print(response.text)
