@@ -1,17 +1,10 @@
 #!/usr/bin/python3
-"""
-Module to fetch https://alx-intranet.hbtn.io/status using the requests package.
-"""
+"""using requests module to fetch"""
 
 import requests
 
 if __name__ == "__main__":
-    """
-    Fetches https://alx-intranet.hbtn.io/status and displays the body response.
-    """
-    url = 'https://alx-intranet.hbtn.io/status'
-    response = requests.get(url)
-    body = response.text
+    response = requests.get('https://alx-intranet.hbtn.io/status')
     print("Body response:")
-    print("\t- type:", type(body))
-    print("\t- content:", body)
+    print("\t- type: {}".format(type(response.text)))
+    print("\t- content: {}".format(response.text))
