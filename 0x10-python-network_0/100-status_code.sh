@@ -1,3 +1,3 @@
 #!/bin/bash
-# Send request to URL .
-awk 'NR==1{printf "%s", $2}' headers "$(curl -sI "$1" -o headers)"
+# request to a URL passed as an argument, and displays only the status code of the response.
+curl -s -o /dev/null -w "%{http_code}" "$1"
