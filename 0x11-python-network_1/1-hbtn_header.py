@@ -1,16 +1,13 @@
 #!/usr/bin/python3
-"""
-Module to fetch the value of the X-Request-Id variable from the header of the response.
-"""
+"""using urllib to send requests"""
 
-import urllib.request
 import sys
+from urllib import request
 
 if __name__ == "__main__":
-    """
-    Takes in a URL, sends a request to the URL, and displays the value of the X-Request-Id variable found in the header of the response.
-    """
+    # get the URL from the command line argument
     url = sys.argv[1]
-    with urllib.request.urlopen(url) as response:
-        x_request_id = response.headers.get('X-Request-Id')
-        print(x_request_id)
+
+    # Make a GET request to the URL
+    with request.urlopen(url) as response:
+        print(dict(response.headers).get("X-Request-Id"))
