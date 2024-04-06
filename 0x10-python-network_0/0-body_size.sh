@@ -1,3 +1,3 @@
 #!/bin/bash
-# Send request to URL with curl.
-curl -sI "$1" | grep Content-Length | cut -d " " -f 2
+#Takes in a URL and send a request to it
+curl -s "$1" | wc -c
