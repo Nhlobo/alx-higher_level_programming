@@ -1,17 +1,18 @@
 #!/usr/bin/node
 
-// import the mode
 const fs = require('fs');
 
-// The first argument is the file path
-const file = process.argv[2];
+// Check if correct number of command-line arguments is provided
+if (process.argv.length !== 4) {
+  console.error('Usage: node 1-writeme.js <file_path> "<string_to_write>"');
+  process.exit(1);
+}
 
-// The second argument is the string to write
+const filePath = process.argv[2];
 const content = process.argv[3];
 
-// write to file
-fs.writeFile(file, content, 'utf-8', error => {
-  if (error) {
-    console.log(error);
+fs.writeFile(filePath, content, 'utf-8', (err) => {
+  if (err) {
+    console.error(err);
   }
 });
