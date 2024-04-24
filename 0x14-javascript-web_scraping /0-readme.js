@@ -1,16 +1,21 @@
 #!/usr/bin/node
 
-// import the module
 const fs = require('fs');
 
-// The first argument is the file path
-const file = process.argv[2];
+// Check if correct number of command-line arguments is provided
+if (process.argv.length !== 3) {
+  console.error('Usage: node read-file.js <file-path>');
+  process.exit(1);
+}
 
-// read the file
-fs.readFile(file, 'utf-8', (error, data) => {
-  if (error) {
-    console.error('Error reading file:', error);
-    return;
+// Get the file path from command line arguments
+const filePath = process.argv[2];
+
+// Read the file in UTF-8 encoding
+fs.readFile(filePath, 'utf-8', (err, data) => {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(data);
   }
-  console.log(data);
 });
